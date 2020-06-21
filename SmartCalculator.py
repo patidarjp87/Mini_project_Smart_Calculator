@@ -7,7 +7,7 @@ print(Responses[1])
 while True:
     print()
     text=input('Enter a question')
-    for word in text.split(' '):
+    for word in text.split():
         if word.upper() in operations.keys():
             try:
                 l=extract_numbers_from_text(text)
@@ -20,5 +20,23 @@ while True:
         elif word.upper() in commands.keys():
             commands[word.upper()]()
             break
+        elif word.upper() in logical.keys():
+            try:
+                l=extract_numbers_from_text(text)
+                r=logical[word.upper()](int(l[0]),int(l[1]))
+                print(r)
+            except:
+                print('Something went wrong...!!! please retry')
+            finally:
+                break
+        elif word.upper() in operation.keys():
+            try:
+                l=extract_numbers_from_text(text)
+                r=operation[word.upper()](int(l[0]))
+                print(r)
+            except:
+                print('Something went wrong...!!! please retry')
+            finally:
+                break
     else:
         sorry()
